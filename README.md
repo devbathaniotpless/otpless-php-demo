@@ -4,7 +4,7 @@
 
 ## Steps to add OTPless SDK to your PHP project
 
-1. **Add button to open OTPLESS Sign in floater**
+1. **Add OTPLESS Sign in floater**
 
     > Add the following elements.
 

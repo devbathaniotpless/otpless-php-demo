@@ -1,7 +1,6 @@
 <?php include 'utils/head.php';?>
 
 <body>
-    <button id='otpless' custom="true">Get Started</button>
     <script type="text/javascript" src="https://otpless.com/auth.js" cid="YOUR_CID_HERE"></script>
     <script type="text/javascript">
         function otpless(otplessUser) {
