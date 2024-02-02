@@ -14,22 +14,24 @@
     ```
 
 2. **Retrieve User's Information**
-    > load script on button click
+    > load SDK script on button click
+
+    ```js
+    function loadOtplessLogin() {
+        const otplessScript = document.createElement("script");
+        otplessScript.src = "https://otpless.com/auth.js";
+        // otplessScript.setAttribute("cid", "YOUR_CID_HERE");
+        document.body.appendChild(otplessScript);
+    }
+        
+    ```
+3. **Retrieve User's Information**
     > retrive data using **otplessUser** object
 
-    ```html
-    <script type="text/javascript">
-        function loadOtplessLogin() {
-            const otplessScript = document.createElement("script");
-            otplessScript.src = "https://otpless.com/auth.js";
-            // otplessScript.setAttribute("cid", "YOUR_CID_HERE");
-            document.body.appendChild(otplessScript);
-            document.getElementById("otpless-login-button").style.display = "none";
-        }
-        function otpless(otplessUser) {
-            alert(JSON.stringify(otplessUser));
-        }
-    </script>
+    ```js
+    function otpless(otplessUser) {
+        alert(JSON.stringify(otplessUser));
+    }
     ```
 
 ### Usage
