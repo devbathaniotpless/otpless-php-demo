@@ -1,15 +1,15 @@
 [![OTPless](https://d1j61bbz9a40n6.cloudfront.net/website/home/v4/logo/white_logo.svg)](https://otpless.com/platforms/javascript)
 
-# PHP Demo - Login Page
+# PHP Demo - Login floater
 
 ## Steps to add OTPless SDK to your PHP project
 
-1. **Add OTPLESS Sign in**
+1. **Add button to open OTPLESS Sign in floater**
 
-    > Add the following code to your sign up/ sign in page where you want to embed your sign in functionality.
+    > Add the following elements.
 
     ```html
-    <div id="otpless-login-page"></div>
+    <button id='otpless' custom="true">Get Started</button>
     <script type="text/javascript" src="https://otpless.com/auth.js" cid="YOUR_CID_HERE"></script>
     // Replace with your cid
     ```
