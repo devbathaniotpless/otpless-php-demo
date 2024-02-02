@@ -13,30 +13,88 @@
     <button id="otpless-login-button" class="btn" onclick="loadOtplessLogin()">Get Started</button>
     ```
 
-2. **Retrieve User's Information**
-    > load SDK script on button click
+2. **Load the script and add callback function**
 
-    ```js
-    function loadOtplessLogin() {
-        const otplessScript = document.createElement("script");
-        otplessScript.src = "https://otpless.com/auth.js";
-        // otplessScript.setAttribute("cid", "YOUR_CID_HERE");
-        document.body.appendChild(otplessScript);
-    }
-        
-    ```
-3. **Retrieve User's Information**
     > retrive data using **otplessUser** object
 
-    ```js
-    function otpless(otplessUser) {
-        alert(JSON.stringify(otplessUser));
-    }
+    ```html
+    <script type="text/javascript">
+        initOTPless = (callback) => {
+            console.log('called init')
+            const otplessInit = Reflect.get(window, 'otplessInit')
+
+            const loadScript = () => {
+                const script = document.createElement('script')
+                script.src = 'https://otpless.com/auth.js'
+                script.id = 'otplessIdScript'
+                // script.setAttribute('cid', 'YOUR_CID_HERE')
+                document.body.appendChild(script)
+            }
+
+            otplessInit ? otplessInit() : loadScript()
+
+            Reflect.set(window, 'otpless', callback)
+        }
+
+        const callback = (otplessUser) => {
+            removeQueryParam('ex')
+            localStorage.setItem('token', otplessUser.token)
+            window.location.href = 'result.php'
+        }
+
+        const openModal = () => {
+            const urlParams = new URLSearchParams(window.location.search)
+            const paramsValue = urlParams.get('ex')
+
+            if (!paramsValue) {
+                const currentURL = window.location.href
+                const newParam1 = 'ex=true'
+                const updatedURL = `${currentURL}?${newParam1}`
+                window.history.pushState(null, '', updatedURL)
+            }
+            initOTPless(callback)
+            const modalContainer = document.getElementById('modalContainer')
+            modalContainer ? (modalContainer.style.display = 'flex') : ''
+
+            setTimeout(() => {
+                removeQueryParam('ex')
+            }, 1000)
+        }
+
+        const removeQueryParam = (param) => {
+            const url = new URL(window.location.href)
+            url.searchParams.delete(param)
+            window.history.pushState(null, '', url)
+        }
+
+        const closeModal = (e) => {
+            removeQueryParam('ex')
+            const modalContainer = document.getElementById('modalContainer')
+            if (e.target === modalContainer) {
+                modalContainer ? (modalContainer.style.display = 'none') : ''
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const urlParams = new URLSearchParams(window.location.search)
+            const paramsValue = urlParams.get('ex')
+            if (paramsValue) initOTPless(callback)
+        })
+    </script>
+    ```
+
+3. **Add following code to render login page**
+
+    ```html
+    <div className='modal-container' id='modalContainer' onClick={closeModal}>
+        <div id='otpless-login-page'></div>
+    </div>
+    <button onclick="openModal()">Get Started</button>
     ```
 
 ### Usage
 
-> **Prequisite** [XAMPP](https://xammp.com) installed
+> **Prerequisite** [XAMPP](https://xammp.com) installed
 
 - Clone this repository in XAMPP's htdocs directory (eg. `C:/xampp/htdocs/otpless-php-demo`).
 - Open `XAMPP Control Panel` and start Apache server.
