@@ -11,7 +11,6 @@
     > Add the following elements.
 
     ```html
-    <button id='otpless' custom="true">Get Started</button>
     <script id="otpless-sdk" type="text/javascript" src="https://otpless.com/auth.js" appId="PASTE_YOUR_APPID_HERE"></script>
     ```
 
