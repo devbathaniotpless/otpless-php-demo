@@ -1,11 +1,12 @@
 <?php include 'utils/head.php';?>
 
 <body>
-    <script type="text/javascript" src="https://otpless.com/auth.js" cid="YOUR_CID_HERE"></script>
+    <script id="otpless-sdk" type="text/javascript" src="https://otpless.com/auth.js" appId="PASTE_YOUR_APPID_HERE"></script>
     <script type="text/javascript">
         function otpless(otplessUser) {
-            console.log(JSON.stringify(otplessUser));
-            localStorage.setItem('token', otplessUser.token)
+            // Replace the following code with your own logic
+            console.log(otplessUser)
+            alert(JSON.stringify(otplessUser));
             window.location.href = 'result.php'
         }
     </script>

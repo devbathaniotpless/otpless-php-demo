@@ -1,20 +1,21 @@
-[![OTPless](https://d1j61bbz9a40n6.cloudfront.net/website/home/v4/logo/white_logo.svg)](https://otpless.com/platforms/javascript)
+[![OTPless](https://d1j61bbz9a40n6.cloudfront.net/website/home/v4/logo/white_logo.svg)](https://otpless.com)
 
 # PHP Demo - Login floater
 
 ## Steps to add OTPless SDK to your PHP project
 
-1. **Add OTPLESS Sign in floater**
+1. **Create an App in [OTPless dashboard](https://otpless.com/dashboard/app) and copy the `APP ID`**
+
+2. **Add OTPLESS Sign in floater**
 
     > Add the following elements.
 
     ```html
     <button id='otpless' custom="true">Get Started</button>
-    <script type="text/javascript" src="https://otpless.com/auth.js" cid="YOUR_CID_HERE"></script>
-    // Replace with your cid
+    <script id="otpless-sdk" type="text/javascript" src="https://otpless.com/auth.js" appId="PASTE_YOUR_APPID_HERE"></script>
     ```
 
-2. **Retrieve User's Information**
+3. **Retrieve User's Information**
 
     > retrive data using **otplessUser** object
 
@@ -28,28 +29,13 @@
 
 ### Usage
 
-> **Prequisite** [XAMPP](https://xammp.com) installed
+> **Prerequisites** [XAMPP](https://xammp.com) installed
 
 - Clone this repository in XAMPP's htdocs directory (eg. `C:/xampp/htdocs/otpless-php-demo`).
 - Open `XAMPP Control Panel` and start Apache server.
 - Open [localhost/otpless-php-demo](http://localhost/otpless-php-demo/) in your browser to see the demo.
 - Switch branches to check out available options to integrate *OTPless SDK* in your project.
 
-> Received User Data Format
+## *Thank You*
 
-```js
-// otpless user Format
-{
-    "token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-    "timestamp": "YYYY-MM-DD HH:MM:SS",
-    "timezone": "+XX:XX",
-    "mobile": {
-        "name": "User Name",
-        "number": "User Mobile Number"
-    },
-    "email": {
-        "name": "User Name ",
-        "email": "User Email"
-    }
-}
-```
+## [Visit OTPless](https://otpless.com/platforms/javascript)
