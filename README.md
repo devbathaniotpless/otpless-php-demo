@@ -1,17 +1,10 @@
-[![OTPless](https://d1j61bbz9a40n6.cloudfront.net/website/home/v4/logo/white_logo.svg)](https://otpless.com/platforms/javascript)
+[![OTPless](https://d1j61bbz9a40n6.cloudfront.net/website/home/v4/logo/white_logo.svg)](https://otpless.com)
 
 # PHP Demo - Login Page
 
 ## Steps to add OTPless SDK to your PHP project
 
-1. **Add OTPLESS Sign in Page and Button to load it**
-
-    > Add the following elements.
-
-    ```html
-    <div id="otpless-login-page"></div>
-    <button id="otpless-login-button" class="btn" onclick="loadOtplessLogin()">Get Started</button>
-    ```
+1. **Create an App in [OTPless dashboard](https://otpless.com/dashboard/app) and copy the `APP ID`**
 
 2. **Load the script and add callback function**
 
@@ -20,14 +13,17 @@
     ```html
     <script type="text/javascript">
         initOTPless = (callback) => {
-            console.log('called init')
             const otplessInit = Reflect.get(window, 'otplessInit')
 
             const loadScript = () => {
+                const isScriptLoaded = document.getElementById("otpless-sdk");
+                if(isScriptLoaded) return;
+
                 const script = document.createElement('script')
-                script.src = 'https://otpless.com/auth.js'
-                script.id = 'otplessIdScript'
-                // script.setAttribute('cid', 'YOUR_CID_HERE')
+                script.id = 'otpless-sdk'
+                script.type = 'text/javascript'
+                script.src = 'https://otpless.com/v2/auth.js'
+                script.setAttribute('data-appid', 'PASTE_YOUR_APPID_HERE')
                 document.body.appendChild(script)
             }
 
@@ -38,8 +34,7 @@
 
         const callback = (otplessUser) => {
             removeQueryParam('ex')
-            localStorage.setItem('token', otplessUser.token)
-            window.location.href = 'result.php'
+            alert(JSON.stringify(otplessUser))
         }
 
         const openModal = () => {
@@ -83,7 +78,7 @@
     </script>
     ```
 
-3. **Add following code to render login page**
+3. **Add following code to add login page modal and button to open the modal**
 
     ```html
     <div className='modal-container' id='modalContainer' onClick={closeModal}>
@@ -101,21 +96,6 @@
 - Open [localhost/otpless-php-demo](http://localhost/otpless-php-demo/) in your browser to see the demo.
 - Switch branches to check out available options to integrate *OTPless SDK* in your project.
 
-> Received User Data Format
+## *Thank You*
 
-```js
-// otpless user Format
-{
-    "token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-    "timestamp": "YYYY-MM-DD HH:MM:SS",
-    "timezone": "+XX:XX",
-    "mobile": {
-        "name": "User Name",
-        "number": "User Mobile Number"
-    },
-    "email": {
-        "name": "User Name ",
-        "email": "User Email"
-    }
-}
-```
+## [Visit OTPless](https://otpless.com/platforms/javascript)
